@@ -19,7 +19,8 @@ nobase_pkginclude_HEADERS += \
   AnalysisHandler.hh \
   AnalysisInfo.hh \
   AnalysisBuilder.hh \
-  AnalysisLoader.hh
+  AnalysisLoader.hh \
+  HeavyIonAnalysis.hh
 
 
 ## Build config stuff

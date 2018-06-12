@@ -8,7 +8,8 @@ libRivetCore_la_SOURCES = \
   Run.cc Event.cc Jet.cc Particle.cc \
   ProjectionApplier.cc Projection.cc \
   Analysis.cc AnalysisLoader.cc AnalysisInfo.cc \
-  AnalysisHandler.cc ProjectionHandler.cc
+  AnalysisHandler.cc ProjectionHandler.cc \
+  HeavyIonAnalysis.cc
 
 libRivetCore_la_CPPFLAGS = -I$(srcdir)/yamlcpp -DYAMLCPP_API=3 -DYAML_NAMESPACE=RIVET_YAML $(AM_CPPFLAGS)
 
