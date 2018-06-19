@@ -119,7 +119,8 @@ am_libRivetCore_la_OBJECTS = libRivetCore_la-Run.lo \
 	libRivetCore_la-AnalysisLoader.lo \
 	libRivetCore_la-AnalysisInfo.lo \
 	libRivetCore_la-AnalysisHandler.lo \
-	libRivetCore_la-ProjectionHandler.lo
+	libRivetCore_la-ProjectionHandler.lo \
+	libRivetCore_la-HeavyIonAnalysis.lo
 libRivetCore_la_OBJECTS = $(am_libRivetCore_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -421,7 +422,8 @@ libRivetCore_la_SOURCES = \
   Run.cc Event.cc Jet.cc Particle.cc \
   ProjectionApplier.cc Projection.cc \
   Analysis.cc AnalysisLoader.cc AnalysisInfo.cc \
-  AnalysisHandler.cc ProjectionHandler.cc
+  AnalysisHandler.cc ProjectionHandler.cc \
+  HeavyIonAnalysis.cc
 
 libRivetCore_la_CPPFLAGS = -I$(srcdir)/yamlcpp -DYAMLCPP_API=3 -DYAML_NAMESPACE=RIVET_YAML $(AM_CPPFLAGS)
 libRivetCore_la_LIBADD = $(builddir)/yamlcpp/librivet-yaml-cpp.la
@@ -484,6 +486,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-AnalysisInfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-AnalysisLoader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-Event.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-HeavyIonAnalysis.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-Jet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-Particle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libRivetCore_la-Projection.Plo@am__quote@
@@ -588,6 +591,13 @@ libRivetCore_la-ProjectionHandler.lo: ProjectionHandler.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ProjectionHandler.cc' object='libRivetCore_la-ProjectionHandler.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libRivetCore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libRivetCore_la-ProjectionHandler.lo `test -f 'ProjectionHandler.cc' || echo '$(srcdir)/'`ProjectionHandler.cc
+
+libRivetCore_la-HeavyIonAnalysis.lo: HeavyIonAnalysis.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libRivetCore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libRivetCore_la-HeavyIonAnalysis.lo -MD -MP -MF $(DEPDIR)/libRivetCore_la-HeavyIonAnalysis.Tpo -c -o libRivetCore_la-HeavyIonAnalysis.lo `test -f 'HeavyIonAnalysis.cc' || echo '$(srcdir)/'`HeavyIonAnalysis.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libRivetCore_la-HeavyIonAnalysis.Tpo $(DEPDIR)/libRivetCore_la-HeavyIonAnalysis.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='HeavyIonAnalysis.cc' object='libRivetCore_la-HeavyIonAnalysis.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libRivetCore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libRivetCore_la-HeavyIonAnalysis.lo `test -f 'HeavyIonAnalysis.cc' || echo '$(srcdir)/'`HeavyIonAnalysis.cc
 
 mostlyclean-libtool:
 	-rm -f *.lo
