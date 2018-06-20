@@ -16,6 +16,7 @@ namespace Rivet {
     enum CentralityMethod {
       ImpactParameter,
       Multiplicity,
+	  TransverseEnergy,
       Undefined
     };
 
