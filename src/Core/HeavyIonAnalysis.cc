@@ -32,6 +32,15 @@ namespace Rivet {
       _histCentralityControlVector.push_back(bookHisto1D("control_multiplicity_" + trimString(fs->getCuts()->description()), 10000, 0, 10000.0, "Control histogram", "xlabel", "ylabel"));
       break;
 
+	case TransverseEnergy:
+	  addProjection(*fs, "FS" + methodID);
+	  _methodNameVector.push_back("TransverseEnergy");
+      std::cout << "Method: TransverseEnergy" << std::endl;
+	  _histCentralityCalibrationVector.push_back(bookHisto1D("calib_transverseE_" + trimString(fs->getCuts()->description()), 10000, 0, 10000.0*GeV, "Calibration histogram", "xlabel", "ylabel"));
+      _histCentralityControlVector.push_back(bookHisto1D("control_transverseE_" + trimString(fs->getCuts()->description()), 10000, 0, 10000.0*GeV, "Control histogram", "xlabel", "ylabel"));
+      
+	  break;
+
     default:
       centrality_method_not_found();
     }
@@ -111,7 +120,15 @@ namespace Rivet {
 	observable = e.genEvent()->heavy_ion() ? fs.particles().size() : -1.;
 	break;
       }
-
+	case TransverseEnergy:
+		{
+			const FinalState& fs = applyProjection<FinalState>(e, "FS" + _methodIDVector.at(index));
+			observable = 0;
+			foreach (const Particle& p, fs.particles()){
+			observable += p.Et();
+		}
+		break;
+	}
     default:
       centrality_method_not_found();
     }
