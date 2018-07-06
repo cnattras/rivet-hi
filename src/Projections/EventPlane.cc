@@ -21,7 +21,7 @@ namespace Rivet
 	}
 
 
-	const double EventPlane::EventPlaneN(int N = 2) const
+	const double EventPlane::EventPlaneN(int N ) const
 	{
 		for (unsigned int i = 0; i < _nOfInterest.size(); i++) {
 			if (_nOfInterest[i] == N) return _EPn[i];
