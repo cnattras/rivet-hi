@@ -378,6 +378,7 @@ nobase_pkginclude_HEADERS = Rivet.hh Run.hh Event.hh ParticleBase.hh \
 	Projections/ConstLossyFinalState.hh \
 	Projections/DISFinalState.hh Projections/DISKinematics.hh \
 	Projections/DISLepton.hh Projections/DressedLeptons.hh \
+	Projections/EventPlane.hh \
 	Projections/FastJets.hh Projections/FinalPartons.hh \
 	Projections/FinalState.hh Projections/FoxWolframMoments.hh \
 	Projections/FParameter.hh Projections/HadronicFinalState.hh \
@@ -391,6 +392,7 @@ nobase_pkginclude_HEADERS = Rivet.hh Run.hh Event.hh ParticleBase.hh \
 	Projections/NeutralFinalState.hh \
 	Projections/NonHadronicFinalState.hh \
 	Projections/NonPromptFinalState.hh Projections/ParisiTensor.hh \
+	Projections/ParticleVn.hh \
 	Projections/ParticleFinder.hh Projections/PartonicTops.hh \
 	Projections/PrimaryHadrons.hh Projections/PromptFinalState.hh \
 	Projections/SmearedParticles.hh Projections/SmearedJets.hh \

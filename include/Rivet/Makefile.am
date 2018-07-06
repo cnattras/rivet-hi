@@ -43,6 +43,7 @@ nobase_pkginclude_HEADERS += \
   Projections/DISKinematics.hh \
   Projections/DISLepton.hh \
   Projections/DressedLeptons.hh \
+  Projections/EventPlane.hh \
   Projections/FastJets.hh \
   Projections/FinalPartons.hh \
   Projections/FinalState.hh \
@@ -65,6 +66,7 @@ nobase_pkginclude_HEADERS += \
   Projections/NonPromptFinalState.hh \
   Projections/ParisiTensor.hh \
   Projections/ParticleFinder.hh \
+  Projections/ParticleVn.hh \
   Projections/PartonicTops.hh \
   Projections/PrimaryHadrons.hh \
   Projections/PromptFinalState.hh \
