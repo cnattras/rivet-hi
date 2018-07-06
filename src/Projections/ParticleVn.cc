@@ -26,7 +26,7 @@ namespace Rivet
 		_nOfInterest.push_back(nOfInterest);
 		_Vn.resize(_nOfInterest.size());
 	}
-	const double ParticleVn::GetVn(int n = 2) const
+	const double ParticleVn::GetVn(int n) const
 	{
 		for (unsigned int i = 0; i < _nOfInterest.size(); i++)
 			{
