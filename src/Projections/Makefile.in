@@ -113,14 +113,14 @@ libRivetProjections_la_LIBADD =
 am_libRivetProjections_la_OBJECTS = Beam.lo BeamThrust.lo \
 	ChargedFinalState.lo ChargedLeptons.lo CentralEtHCM.lo \
 	DISFinalState.lo DISKinematics.lo DISLepton.lo \
-	DressedLeptons.lo FastJets.lo FinalPartons.lo FinalState.lo \
+	DressedLeptons.lo EventPlane.lo FastJets.lo FinalPartons.lo FinalState.lo \
 	FParameter.lo HadronicFinalState.lo HeavyHadrons.lo \
 	Hemispheres.lo IdentifiedFinalState.lo InitialQuarks.lo \
 	InvMassFinalState.lo JetAlg.lo JetShape.lo \
 	LeadingParticlesFinalState.lo MergedFinalState.lo \
 	MissingMomentum.lo NeutralFinalState.lo \
 	NonHadronicFinalState.lo NonPromptFinalState.lo \
-	ParisiTensor.lo ParticleFinder.lo PrimaryHadrons.lo \
+	ParisiTensor.lo ParticleFinder.lo ParticleVn.lo PrimaryHadrons.lo \
 	PromptFinalState.lo Sphericity.lo Spherocity.lo TauFinder.lo \
 	Thrust.lo TriggerCDFRun0Run1.lo TriggerCDFRun2.lo \
 	TriggerUA5.lo UnstableFinalState.lo VetoedFinalState.lo \
@@ -388,6 +388,7 @@ libRivetProjections_la_SOURCES = \
   DISKinematics.cc \
   DISLepton.cc \
   DressedLeptons.cc \
+  EventPlane.cc \
   FastJets.cc \
   FinalPartons.cc \
   FinalState.cc \
@@ -408,6 +409,7 @@ libRivetProjections_la_SOURCES = \
   NonPromptFinalState.cc \
   ParisiTensor.cc \
   ParticleFinder.cc \
+  ParticleVn.cc \
   PrimaryHadrons.cc \
   PromptFinalState.cc \
   Sphericity.cc \
@@ -487,6 +489,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DISLepton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DressedLeptons.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FParameter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EventPlane.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FastJets.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FinalPartons.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FinalState.Plo@am__quote@
@@ -506,6 +509,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/NonPromptFinalState.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ParisiTensor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ParticleFinder.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ParticleVn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PrimaryHadrons.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PromptFinalState.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Sphericity.Plo@am__quote@

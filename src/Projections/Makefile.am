@@ -9,6 +9,7 @@ libRivetProjections_la_SOURCES = \
   DISKinematics.cc \
   DISLepton.cc \
   DressedLeptons.cc \
+  EventPlane.cc \
   FastJets.cc \
   FinalPartons.cc \
   FinalState.cc \
@@ -29,6 +30,7 @@ libRivetProjections_la_SOURCES = \
   NonPromptFinalState.cc \
   ParisiTensor.cc \
   ParticleFinder.cc \
+  ParticleVn.cc \
   PrimaryHadrons.cc \
   PromptFinalState.cc \
   Sphericity.cc \
