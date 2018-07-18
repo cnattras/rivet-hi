@@ -3,13 +3,11 @@
 #include "Rivet/Projections/FinalState.hh"
 #include "Rivet/Projections/FastJets.hh"
 #include "Rivet/Projections/ChargedFinalState.hh"
-#include "YODA/ReaderYODA.h"
 #include "Rivet/ReferenceDataLoader.hh"
 #include "fastjet/ClusterSequenceArea.hh"
 #include "Rivet/Projections/ALICEToolsHI.hh"
 #include "Rivet/Projections/EventPlane.hh"
 #include "Rivet/Projections/ParticleVn.hh"
-#include <fstream>
 
 namespace Rivet {
   /// @brief Add a short analysis description here
