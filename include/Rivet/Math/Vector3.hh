@@ -151,7 +151,7 @@ namespace Rivet {
     /// Angle subtended by the vector's projection in x-y and the x-axis.
     double azimuthalAngle(const PhiMapping mapping = ZERO_2PI) const {
       // If this is a null vector, return zero rather than let atan2 set an error state
-      if (Rivet::isZero(mod2())) return 0.0;
+      if (0==mod2()) return 0.0;
 
       // Calculate the arctan and return in the requested range
       const double value = atan2( y(), x() );

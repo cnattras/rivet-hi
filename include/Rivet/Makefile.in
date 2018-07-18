@@ -367,11 +367,14 @@ nobase_dist_noinst_HEADERS = Tools/osdir.hh
 
 # TODO: Move to Rivet/AnalysisTools header dir?
 nobase_pkginclude_HEADERS = Rivet.hh Run.hh Event.hh ParticleBase.hh \
+	ReferenceDataLoader.hh \
 	Particle.fhh Particle.hh Jet.fhh Jet.hh Projection.fhh \
 	Projection.hh ProjectionApplier.hh ProjectionHandler.hh \
 	Analysis.hh AnalysisHandler.hh AnalysisInfo.hh \
 	AnalysisBuilder.hh AnalysisLoader.hh Config/RivetCommon.hh \
 	Config/RivetConfig.hh Config/BuildOptions.hh \
+	Projections/ATLASToolsHI.hh Projections/ATLASCalorimeterTowers.hh \
+	Projections/ALICEToolsHI.hh Projections/CMSToolsHI.hh \
 	Projections/AxesDefinition.hh Projections/Beam.hh \
 	Projections/BeamThrust.hh Projections/CentralEtHCM.hh \
 	Projections/ChargedFinalState.hh Projections/ChargedLeptons.hh \
