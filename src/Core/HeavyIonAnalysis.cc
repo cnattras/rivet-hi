@@ -1,5 +1,5 @@
 // -*- C++ -*-
-#include "pluginALICE/HeavyIonAnalysis.hh"
+#include "Rivet/HeavyIonAnalysis.hh"
 
 namespace Rivet {
   HeavyIonAnalysis::HeavyIonAnalysis(const std::string &name) :
