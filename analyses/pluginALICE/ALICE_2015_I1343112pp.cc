@@ -50,13 +50,15 @@ namespace Rivet {
 
     /// Normalise histograms etc., after the run
     void finalize() {
-		scale(_histraapt5c1,  1/counter2pt5);
-		scale(_histraapt5c3,   1/counter2pt5);
+		scale(_histraapt5c1,  1/(counter2pt5*_ncollc1));
+		scale(_histraapt5c3,   1/(counter2pt5*_ncollc3));
     }
 	
 	double counter2pt5 = 0;
 	Histo1DPtr _histraapt5c1;
 	Histo1DPtr _histraapt5c3;
+	double _ncollc1 = 1501;
+	double _ncollc3 = 743;
 
 
 
