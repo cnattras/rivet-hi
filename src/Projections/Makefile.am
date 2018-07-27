@@ -1,14 +1,19 @@
 noinst_LTLIBRARIES = libRivetProjections.la
 libRivetProjections_la_SOURCES = \
+  ALICEToolsHI.cc \
+  ATLASToolsHI.cc \
   Beam.cc \
   BeamThrust.cc \
   ChargedFinalState.cc \
   ChargedLeptons.cc \
   CentralEtHCM.cc \
+  CMSToolsHI.cc \
+  DetectorPixels.cc \
   DISFinalState.cc \
   DISKinematics.cc \
   DISLepton.cc \
   DressedLeptons.cc \
+  EventPlane.cc \
   FastJets.cc \
   FinalPartons.cc \
   FinalState.cc \
@@ -29,6 +34,7 @@ libRivetProjections_la_SOURCES = \
   NonPromptFinalState.cc \
   ParisiTensor.cc \
   ParticleFinder.cc \
+  ParticleVn.cc \
   PrimaryHadrons.cc \
   PromptFinalState.cc \
   Sphericity.cc \

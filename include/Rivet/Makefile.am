@@ -20,8 +20,7 @@ nobase_pkginclude_HEADERS += \
   AnalysisInfo.hh \
   AnalysisBuilder.hh \
   AnalysisLoader.hh \
-  HeavyIonAnalysis.hh \
-  ReferenceDataLoader.hh
+  HeavyIonAnalysis.hh 
 
 
 ## Build config stuff
@@ -34,7 +33,6 @@ nobase_pkginclude_HEADERS += \
 ## Projections
 nobase_pkginclude_HEADERS += \
   Projections/ALICEToolsHI.hh \
-  Projections/ATLASCalorimeterTowers.hh \
   Projections/ATLASToolsHI.hh \
   Projections/AxesDefinition.hh \
   Projections/Beam.hh \
@@ -44,6 +42,7 @@ nobase_pkginclude_HEADERS += \
   Projections/ChargedLeptons.hh \
   Projections/CMSToolsHI.hh \
   Projections/ConstLossyFinalState.hh \
+  Projections/DetectorPixels.hh \
   Projections/DISFinalState.hh \
   Projections/DISKinematics.hh \
   Projections/DISLepton.hh \
@@ -56,6 +55,7 @@ nobase_pkginclude_HEADERS += \
   Projections/FParameter.hh \
   Projections/HadronicFinalState.hh \
   Projections/HeavyHadrons.hh \
+  Projections/HeavyIonInfo.hh \
   Projections/Hemispheres.hh \
   Projections/IdentifiedFinalState.hh \
   Projections/InitialQuarks.hh \

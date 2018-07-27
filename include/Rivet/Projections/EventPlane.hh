@@ -2,97 +2,87 @@
 #ifndef RIVET_EventPlane_HH
 #define RIVET_EventPlane_HH
 
-#include "Rivet/Projections/ChargedFinalState.hh"
+#include "Rivet/Projections/FinalState.hh"
 #include "Rivet/Particle.hh"
 #include "Rivet/Event.hh"
 
 
-namespace Rivet {
+namespace Rivet
+{
 
-
-	/// @brief Project Out observed Event plane 
+	/// @brief Project Out Observed Event Plane(s)
 	///
-	///
-	/// @todo 
-	class EventPlane : public Projection {
+	/// Does stuff
+	
+	class EventPlane : public Projection
+	{
 		public:
 
-		
-		/// @name Constructors and destructors.
-		//@{
 
-		/// Constructor
-		///
-		EventPlane(const ChargedFinalState& cfs, const std::vector<int>& nOfInterest, const Cut& c=(Cuts::pT < 5.0)) {
-		  setName("EventPlane");
-		  addProjection(cfs, "CFS");
-		  _nOfInterest = nOfInterest;
-		  _epN.resize(_nOfInterest.size());
-		  _pCut = c;
-		}
-		EventPlane(const ChargedFinalState& cfs,int nOfInterest, const Cut& c=(Cuts::pT < 5.0)) {
-		  setName("EventPlane");
-		  addProjection(cfs, "CFS");
-		  _nOfInterest.push_back(nOfInterest);
-		  _epN.resize(_nOfInterest.size());
-		  _pCut = c;
-		}
-
-		/// Clone on the heap.
-		DEFAULT_RIVET_PROJ_CLONE(EventPlane);
-
-		//@}
-		const double GetEventPlaneOrdinal(int n = 0) const { return _epN[n]; }
-		
-		const double EventPlaneN(int N = 2) const { 
-			for (unsigned int i = 0; i < _nOfInterest.size(); i++){
-				if (_nOfInterest[i] == N) return _epN[i]; 
-			}
-			return -100.; 
 			
-		}
-		const std::vector<double> EventPlanes() const { return _epN; }
+			EventPlane( const FinalState& fs, const std::vector<int>& nOfInterest,  const Cut& c=(Cuts::pT < 5.0) );
 
-		
+			EventPlane( const FinalState& fs, int nOfInterest, const Cut& c=(Cuts::pT < 5.0) );
+
+			///
+			/// Clone on the heap.
+			DEFAULT_RIVET_PROJ_CLONE(EventPlane);
+
+			/////////////////////////////////////////////////////////////////////
+			/// Returns an Event Plane by order of passed n of interest
+			/////////////////////////////////////////////////////////////////////
+			const double GetEventPlaneOrdinal(int n = 0) const
+			{
+				return _epN[n];
+			}
+
+			/////////////////////////////////////////////////////////////////////
+			/// Returns the nth Event Plane
+			/////////////////////////////////////////////////////////////////////
+			const double EventPlaneN(int N = 2) const
+			{
+				for (unsigned int i = 0; i < _nOfInterest.size(); i++)
+				{
+					if (_nOfInterest[i] == N) return _epN[i];
+				}
+				return -100.;
+
+			}
+
+			/////////////////////////////////////////////////////////////////////
+			/// Returns a vector of all selected event planes
+			/////////////////////////////////////////////////////////////////////
+			const std::vector<double> EventPlanes() const
+			{
+				return _epN;
+			}
+
+
 
 
 
 		protected:
 
-		/// Apply the projection to the event.
-		void project(const Event& e){
-			
-			const Particles& parts = apply<ChargedFinalState>(e, "CFS").particles(_pCut);
-			
-			for (unsigned int i = 0; i < _nOfInterest.size(); i++){
-				double n = static_cast<double>(_nOfInterest[i]);	
-				double Qx = 0.0;
-				double Qy = 0.0;
-				foreach (const Particle& p, parts){
-					Qx += p.pT()*cos(n*p.phi());
-					Qy += p.pT()*sin(n*p.phi());
-				}
-				
-				_epN[i] = atan2(Qy,Qx)/ n;
-				
-			}
-			
-		}
+			/// Apply the projection to the event.
+			void project(const Event& e);
 
-		/// Compare projections (only difference is in UFS definition)
-		int compare(const Projection& p) const {
-		  return mkNamedPCmp(p, "CFS");
-		}
-		
-	private:
-		
-		std::vector<int> _nOfInterest;
-		std::vector<double> _epN;
-		Cut _pCut;
+			/// Compare projections
+			int compare(const Projection& p) const;
+
+
+			std::vector<int> _nOfInterest;
+			std::vector<double> _epN;
+			Cut _pCut;
 	};
 
 
+	
+
 }
+
+
+
+
 
 
 #endif

@@ -109,17 +109,18 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 libRivetProjections_la_LIBADD =
-am_libRivetProjections_la_OBJECTS = Beam.lo BeamThrust.lo \
-	ChargedFinalState.lo ChargedLeptons.lo CentralEtHCM.lo \
+am_libRivetProjections_la_OBJECTS = ALICEToolsHI.lo ATLASToolsHI.lo \
+        Beam.lo BeamThrust.lo ChargedFinalState.lo ChargedLeptons.lo \
+	CentralEtHCM.lo CMSToolsHI.lo DetectorPixels.lo \
 	DISFinalState.lo DISKinematics.lo DISLepton.lo \
-	DressedLeptons.lo FastJets.lo FinalPartons.lo FinalState.lo \
-	FParameter.lo HadronicFinalState.lo HeavyHadrons.lo \
+	DressedLeptons.lo EventPlane.lo FastJets.lo FinalPartons.lo \
+	FinalState.lo FParameter.lo HadronicFinalState.lo HeavyHadrons.lo \
 	Hemispheres.lo IdentifiedFinalState.lo InitialQuarks.lo \
 	InvMassFinalState.lo JetAlg.lo JetShape.lo \
 	LeadingParticlesFinalState.lo MergedFinalState.lo \
 	MissingMomentum.lo NeutralFinalState.lo \
 	NonHadronicFinalState.lo NonPromptFinalState.lo \
-	ParisiTensor.lo ParticleFinder.lo PrimaryHadrons.lo \
+	ParisiTensor.lo ParticleFinder.lo ParticleVn.lo PrimaryHadrons.lo \
 	PromptFinalState.lo Sphericity.lo Spherocity.lo TauFinder.lo \
 	Thrust.lo TriggerCDFRun0Run1.lo TriggerCDFRun2.lo \
 	TriggerUA5.lo UnstableFinalState.lo VetoedFinalState.lo \
@@ -378,11 +379,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 noinst_LTLIBRARIES = libRivetProjections.la
 libRivetProjections_la_SOURCES = \
+  ALICEToolsHI.cc \
+  ATLASToolsHI.cc \
   Beam.cc \
   BeamThrust.cc \
   ChargedFinalState.cc \
   ChargedLeptons.cc \
   CentralEtHCM.cc \
+  CMSToolsHI.cc \
+  DetectorPixels.CC \
   DISFinalState.cc \
   DISKinematics.cc \
   DISLepton.cc \
@@ -478,15 +483,20 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ALICEToolsHI.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ATLASToolsHI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Beam.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/BeamThrust.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CentralEtHCM.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ChargedFinalState.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ChargedLeptons.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CMSToolsHI.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DetectorPixels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DISFinalState.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DISKinematics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DISLepton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DressedLeptons.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EventPlane.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FParameter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EventPlane.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FastJets.Plo@am__quote@
