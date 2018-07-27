@@ -462,10 +462,10 @@ namespace Rivet {
 		//scaling the historgrams
 		// 0-10% centrality 
 		//{
-        _evntandNcoll1 = _eventcounter1*_ncollc1;
-        _evntandNcoll3 = _eventcounter3*_ncollc3;
-        _evntandNcoll5 = _eventcounter5*_ncollc5;
-        _evntandNcoll8 = _eventcounter8*_ncollc8;
+        double _evntandNcoll1 = _eventcounter1*_ncollc1;
+        double _evntandNcoll3 = _eventcounter3*_ncollc3;
+        double _evntandNcoll5 = _eventcounter5*_ncollc5;
+        double _evntandNcoll8 = _eventcounter8*_ncollc8;
 		scale(_hist_cjs_r2_pt0_c1, 1/_evntandNcoll1);
 		scale(_hist_cjs_r3_pt0_c1, 1/_evntandNcoll1);
 		
