@@ -158,7 +158,7 @@ namespace Rivet
 
 					str = "d05-x01-y03";
 					str[6] = '1' + i;
-					_h_f5_L[i] = bookScatter2D(str);
+					_h_f5_L[i] = bookHisto1D(str);
 					str[10]--;
 					_h_f5_U[i] = bookHisto1D(str,refData(5,1+i,2));
 					str[10]--;
@@ -192,7 +192,7 @@ namespace Rivet
 
 						str = "d06-x01-y03";
 						str[6] = '1' + i;
-						_h_f6_L[i] = bookScatter2D(str);
+						_h_f6_L[i] = bookHisto1D(str);
 						str[10]--;
 						_h_f6_U[i] = bookHisto1D(str,refData(6,1+i,2));
 						str[10]--;
@@ -200,7 +200,7 @@ namespace Rivet
 
 						str = "d07-x01-y03";
 						str[6] = '1' + i;
-						_h_f7_L[i] = bookScatter2D(str);
+						_h_f7_L[i] = bookHisto1D(str);
 						str[10]--;
 						_h_f7_U[i] = bookHisto1D(str,refData(7,1+i,2));
 						str[10]--;
@@ -208,7 +208,7 @@ namespace Rivet
 
 						str = "d08-x01-y03";
 						str[6] = '1' + i;
-						_h_f8_L[i] = bookScatter2D(str);
+						_h_f8_L[i] = bookHisto1D(str);
 						str[10]--;
 						_h_f8_U[i] = bookHisto1D(str,refData(8,1+i,2));
 						str[10]--;
@@ -304,7 +304,7 @@ namespace Rivet
 							}
 							else
 							{
-							
+								
 								if (bin > 0) bin--;
 								count[3][bin]+=weight;
 								foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi()))
@@ -360,10 +360,10 @@ namespace Rivet
 					divide(_h_f2_U[i],_h_pp_xe_100_120,_h_f2_L[i]);
 					divide(_h_f3_U[i],_h_pp_xe_120_150,_h_f3_L[i]);
 					divide(_h_f4_U[i],_h_pp_xe_150_300,_h_f4_L[i]);
-					divide(_h_f5_U[i],_h_pp_pt_100_300,_h_f5_L[i]);
-					divide(_h_f6_U[i],_h_pp_pt_100_120,_h_f6_L[i]);
-					divide(_h_f7_U[i],_h_pp_pt_120_150,_h_f7_L[i]);
-					divide(_h_f8_U[i],_h_pp_pt_150_300,_h_f8_L[i]);
+					subtract(_h_f5_U[i],_h_pp_pt_100_300,_h_f5_L[i]);
+					subtract(_h_f6_U[i],_h_pp_pt_100_120,_h_f6_L[i]);
+					subtract(_h_f7_U[i],_h_pp_pt_120_150,_h_f7_L[i]);
+					subtract(_h_f8_U[i],_h_pp_pt_150_300,_h_f8_L[i]);
 
 				}
 				*_h_f1_U[4]-=*_h_f1_U_BG[4];
@@ -371,7 +371,7 @@ namespace Rivet
 				scale(_h_f1_U[4],1./count[0][4]);
 				scale(_h_f5_U[4],1./count[0][4]);
 				divide(_h_f1_U[4],_h_pp_xe_100_300,_h_f1_L[4]);
-				divide(_h_f5_U[4],_h_pp_pt_100_300,_h_f5_L[4]);
+				subtract(_h_f5_U[4],_h_pp_pt_100_300,_h_f5_L[4]);
 
 			}
 
@@ -423,6 +423,11 @@ namespace Rivet
 				*out = *h1 / *h2;
 				out->setPath(path);
 			}
+			void subtract(Histo1DPtr h1, Histo1DPtr h2, Histo1DPtr out){
+				const string path = out->path();
+				*out = *h1 - *h2;
+				out->setPath(path);
+			}
 
 			void _fillRef(Histo1DPtr & h, int d, int x, int y){
 				const Scatter2D scat = refData(d,x,y);
@@ -471,10 +476,10 @@ namespace Rivet
 			Scatter2DPtr _h_f2_L[4]; // lower half fig 2 (PbPb/pp)
 			Scatter2DPtr _h_f3_L[4]; // lower half fig 3 (PbPb/pp)
 			Scatter2DPtr _h_f4_L[4]; // lower half fig 4 (PbPb/pp)
-			Scatter2DPtr _h_f5_L[5]; // lower half fig 5 (PbPb/pp)
-			Scatter2DPtr _h_f6_L[4]; // lower half fig 6 (PbPb/pp)
-			Scatter2DPtr _h_f7_L[4]; // lower half fig 7 (PbPb/pp)
-			Scatter2DPtr _h_f8_L[4]; // lower half fig 8 (PbPb/pp)
+			Histo1DPtr _h_f5_L[5]; // lower half fig 5 (PbPb/pp)
+			Histo1DPtr _h_f6_L[4]; // lower half fig 6 (PbPb/pp)
+			Histo1DPtr _h_f7_L[4]; // lower half fig 7 (PbPb/pp)
+			Histo1DPtr _h_f8_L[4]; // lower half fig 8 (PbPb/pp)
 
 
 			double count[4][5];

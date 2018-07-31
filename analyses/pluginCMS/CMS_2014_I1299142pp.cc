@@ -48,7 +48,7 @@ namespace Rivet {
 		Jets allJets = jets.jetsByPt(100.*GeV); ///// For testing 10 GeV Jets!!! For final 100+ GeV
 		foreach (const Jet& jet, allJets){
 			if (jet.pT() <= 300.*GeV){
-				nJet_100_300++;
+				nJet_100_300 += weight;
 			
 				if (jet.pT() <= 120.*GeV){
 					foreach (const Particle& p, jet.particles()){
@@ -57,7 +57,7 @@ namespace Rivet {
 						_h_pp_xe_100_120->fill(xe(jet,p),weight);
 						_h_pp_pt_100_120->fill(p.pT(),weight);
 						_h_pp_pt_100_300->fill(p.pT(),weight);
-						nJet_100_120++;
+						nJet_100_120 += weight;
 					}
 				
 				}
@@ -68,7 +68,7 @@ namespace Rivet {
 						_h_pp_xe_120_150->fill(xe(jet,p),weight);
 						_h_pp_pt_120_150->fill(p.pT(),weight);
 						_h_pp_pt_100_300->fill(p.pT(),weight);
-						nJet_120_150++;
+						nJet_120_150 += weight;
 					}
 				
 				}
@@ -79,7 +79,7 @@ namespace Rivet {
 						_h_pp_xe_150_300->fill(xe(jet,p),weight);
 						_h_pp_pt_150_300->fill(p.pT(),weight);
 						_h_pp_pt_100_300->fill(p.pT(),weight);
-						nJet_150_300++;
+						nJet_150_300 += weight;
 					}
 				
 				}
