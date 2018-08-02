@@ -9,7 +9,9 @@
 namespace Rivet {
 
 
-  /// @brief Add a short analysis description here
+  /* @brief This program evaluates the azimuthal anisotropy of charged jet production
+              and quantifies it as charged jet v2. This is used to infer information
+              about how jet suppression depends on the initial geometry. */
   class ALICE_2015_I1394678 : public HeavyIonAnalysis {
   public:
 
@@ -55,7 +57,6 @@ namespace Rivet {
       _histadd2       = bookHisto1D("add2", refData(2,1,1));
       _histsub2       = bookHisto1D("sub2", refData(2,1,1));
 
-      cout << "init\n";
     }
 
     /// Perform the per-event analysis
@@ -63,10 +64,10 @@ namespace Rivet {
 
       const double c = centrality(event, "ImpactParameterMethod");
 
-      if((c < 0.) || (c > 100.)){
+      if((c < 0.) || (c > 100.)){   //centrality check
         vetoEvent;
       }
-      /// @todo Do the event by event analysis here
+      /// Define uses of declared projections
       FastJets fastjets = apply<FastJets>(event, "Jets");
       const Jets& jets = fastjets.jetsByPt(Cuts::pT > 0.15*GeV && Cuts::pT < 100*GeV && Cuts::abseta < 0.7);
       MSG_DEBUG("Jet multiplicity = " << jets.size());
@@ -76,10 +77,12 @@ namespace Rivet {
       const Particles& trks = apply<ChargedFinalState>(event, "Tracks").particles();
       MSG_DEBUG("Track multiplicity = " << trks.size());
       const ALICEToolsHI &ath = apply<ALICEToolsHI>(event,"ATH");
-      //Find Event Plane 2 and 3
-      const double EP2 = ath.EventPlaneN(2);
 
-     foreach (const Jet& j, jets){
+      //Find Event Plane 2 
+      const double EP2 = ath.EventPlaneN(2);
+     
+      // Jet evaluation
+      foreach (const Jet& j, jets){
 
       const double area = clust_seq_area->area(j);
 
@@ -91,11 +94,11 @@ namespace Rivet {
 
         // In-Plane criteria
         if ((deltaPhi(j,EP2) < (pi/4)) || (deltaPhi(j,EP2) > (3*pi/4))) {
-          _histInPlane1->fill(ptJet, event.weight());
+          _histInPlane1->fill(ptJet, 1.0);
         }
         // Out-of-Plane criteria
         else {
-          _histOutPlane1->fill(ptJet, event.weight());
+          _histOutPlane1->fill(ptJet, 1.0);
         }
       }
 
@@ -105,15 +108,16 @@ namespace Rivet {
 
         // In-Plane criteria
         if ((deltaPhi(j,EP2) < (pi/4)) || (deltaPhi(j,EP2) > (3*pi/4))) {
-          _histInPlane2->fill(ptJet, event.weight());
+          _histInPlane2->fill(ptJet, 1.0);
         }
         // Out-of-Plane criteria
         else {
-          _histOutPlane2->fill(ptJet, event.weight());
+          _histOutPlane2->fill(ptJet, 1.0);
         }
       }
     }
 
+    // reaction plane resolution evaluation
     _resolution2 = ath.ReactionPlaneResolution2();
     _resolution3 = ath.ReactionPlaneResolution3();
 
@@ -121,7 +125,7 @@ namespace Rivet {
 
   }
 
-    /// Normalise histograms etc., after the run
+    /// Final histograms
     void finalize() {
       //double EPRes = 1;
 
@@ -139,10 +143,10 @@ namespace Rivet {
       scale(_histsub2, (pi/4)*(1/_resolution3));
       divide(_histsub2, _histadd2, _histV2ChJet2);
 
-      cout << "finalize\n";
+      
     }
 
-
+    /// added functionality for histogram evaluation
     void add(Histo1DPtr h1, Histo1DPtr h2, Histo1DPtr hresult) const {
       const string path = hresult->path();
       *hresult = *h1 + *h2;
@@ -159,18 +163,13 @@ namespace Rivet {
       *hresult = *h1 / *h2;
       hresult->setPath(path);
     }
-    void integrate(Histo1DPtr h, Scatter2DPtr s) const {
-      const string path = s->path();
-      *s = toIntegralHisto(*h);
-      s->setPath(path);
-    }
     double deltaPhi2(double phi1, double phi2) {
       return mapAngle0To2Pi(phi1-phi2);
     }
 
     //@}
 
-    /// @name Histogramst
+    /// @name Histograms
     //@{
 
     Scatter2DPtr   _histV2ChJet1;   //0-5% centrality
@@ -190,8 +189,6 @@ namespace Rivet {
 
     double _resolution2;
     double _resolution3;
-  //  double _Nevents0 = 0;
-  //  double _Nevents30 = 0;
 
     //@}
 

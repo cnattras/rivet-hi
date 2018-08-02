@@ -1,14 +1,10 @@
 // -*- C++ -*-
 #include "Rivet/HeavyIonAnalysis.hh"
-#include "Rivet/Projections/FinalState.hh"
+#include "fastjet/ClusterSequenceArea.hh"
 #include "Rivet/Projections/FastJets.hh"
 #include "Rivet/Projections/ChargedFinalState.hh"
-#include "YODA/ReaderYODA.h"
-#include "fastjet/ClusterSequenceArea.hh"
 #include "Rivet/Projections/ALICEToolsHI.hh"
-#include "Rivet/Projections/EventPlane.hh"
-#include "Rivet/Projections/ParticleVn.hh"
-#include <fstream>
+
 
 namespace Rivet {
   /// @brief Add a short analysis description here
@@ -25,7 +21,7 @@ namespace Rivet {
 	  addCentralityMethod(HeavyIonAnalysis::ImpactParameter, 50, "ImpactParameterMethod");
 	  //setting up the cuts 
 	  //{
-	  //cut of jets with pt 0.15 GeV and higher
+	  //cut of particles with pt 0.15 GeV and higher
 	  const ChargedFinalState cfs(Cuts::pT > 0.15*GeV);
 	  declare (cfs, "cfs");
 	  //cone radius parameter of 0.2 and 0.3 
@@ -37,6 +33,7 @@ namespace Rivet {
 	  //decalring jets with R=0.2 and R=0.3
 	  declare(fjr2, "Jetsr2");
 	  declare(fjr3, "Jetsr3");
+	  //background finders
 	  ALICEToolsHI athr2(cfs, fjr2);
 	  ALICEToolsHI athr3(cfs, fjr3);
 	  declare(athr2, "ATHr2");
@@ -239,7 +236,7 @@ namespace Rivet {
 			vetoEvent;
 		}
 		//decalring weight for events
-		const double weight = 1.0;
+		const double weight = event.weight();
 		//decalring fast jet constants 
 		//{
 		const FastJets& fastjetr2 = apply<FastJets>(event, "Jetsr2");
@@ -256,7 +253,7 @@ namespace Rivet {
 		// analysis and fillimg histograms
 		// runs through all of the events within 0-10% centrality 
 		if (c >= 0 && c <= 10) {
-			_eventcounter1++; //counts the number of events within this centrality 
+			_eventcounter1 += weight; //counts the number of events within this centrality 
 			//runs through all of the R=0.2 jets
 			foreach(const Jet& jets, jets2)
 			{
@@ -317,7 +314,7 @@ namespace Rivet {
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// runs through all of the events within 10-30% centrality 
 		if (10 < c && c <= 30){
-			_eventcounter3++;
+			_eventcounter3 += weight;
 			foreach (const Jet& jets, jets2)
 			{
 				double area = seqr2->area(jets);
@@ -356,7 +353,7 @@ namespace Rivet {
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// runs through all of the evets within 30-50% centrality 
 		if ( 30 < c && c <= 50){
-			_eventcounter5++;
+			_eventcounter5 += weight;
 			foreach (const Jet& jets, jets2)
 			{
 				double area = seqr2->area(jets);
@@ -395,7 +392,7 @@ namespace Rivet {
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// runs through all of the events within 50-80% centrality 
 		if ( 50 < c && c <= 80){
-			_eventcounter8++;
+			_eventcounter8 += weight;
 			foreach (const Jet& jets, jets2)
 			{
 				double area = seqr2->area(jets);
@@ -822,7 +819,7 @@ namespace Rivet {
 	Scatter2DPtr _hist_ratio_cjs_r2by3_c8;
 	
 	//}
-	//decalring the variables for counting number of colliosns and target and porjectile particiants
+	//decalring the variables for counting number of colliosns and target and projectile particiants
 	//{
 	double _ncollc1 = 1500.5;
 	double _ncollc3 = 738.8;

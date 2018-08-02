@@ -50,8 +50,8 @@ namespace Rivet {
 
     /// Normalise histograms etc., after the run
     void finalize() {
-		scale(_histraapt5c1,  1/(counter2pt5*_ncollc1));
-		scale(_histraapt5c3,   1/(counter2pt5*_ncollc3));
+		scale(_histraapt5c1,  1./(counter2pt5));
+		scale(_histraapt5c3,   1./(counter2pt5));
 		_histraapt5c1->setPath("/ALICE_2015_I1343112/d06-x01-y01");
 		_histraapt5c3->setPath("/ALICE_2015_I1343112/d07-x01-y01");
     }
@@ -59,11 +59,7 @@ namespace Rivet {
 	double counter2pt5 = 0;
 	Histo1DPtr _histraapt5c1;
 	Histo1DPtr _histraapt5c3;
-	double _ncollc1 = 1501;
-	double _ncollc3 = 743;
-
-
-
+	
 
   };
 

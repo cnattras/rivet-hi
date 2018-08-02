@@ -1,10 +1,10 @@
-# BEGIN PLOT /ALICE_2015_I1343112/d02-x01-y01
+# BEGIN PLOT /ALICE_2015_I1343112/d03-x01-y01
 Title=$\text{}Jet\ Spectra\ R=0.2\ P_{T}^{track}>(5GeV/c)\ Centrality\ 0-10\%$
 XLabel=$\text{}p_{T,ch jet} (GeV/c)$
 YLabel=$\text{}\frac{1}{N_{coll}}\frac{1}{N_{evt}}\frac{d^2N_{ch jet}}{dp_{T,ch jet}d\eta_{jet}}(GeV/c)^{-1}$
 # END PLOT
 
-# BEGIN PLOT /ALICE_2015_I1343112/d03-x01-y01
+# BEGIN PLOT /ALICE_2015_I1343112/d03-x01-y02
 Title=$\text{}Jet\ Spectra\ R=0.2\ P_{T}^{track}>(5GeV/c)\ Centrality\ 10-30\%$
 XLabel=$\text{}p_{T,ch jet} (GeV/c)$
 YLabel=$\text{}\frac{1}{N_{coll}}\frac{1}{N_{evt}}\frac{d^2N_{ch jet}}{dp_{T,ch jet}d\eta_{jet}}(GeV/c)^{-1}$

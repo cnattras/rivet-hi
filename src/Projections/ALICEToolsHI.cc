@@ -9,7 +9,7 @@ namespace Rivet {
 					  ) : ParticleVn(cfs,vn) {
 		  setName("ALICEToolsHI");
 		  addProjection(antiKtJets, "antiKtJets");
-		  
+		  declare(cfs, "CFS");
 		  ChargedFinalState v0part(((Cuts::eta < 5.1)&&(Cuts::eta > 2.8))||((Cuts::eta < -1.7)&&(Cuts::eta > -3.7)));
 		  declare(v0part,"VOParticles");
 		  
