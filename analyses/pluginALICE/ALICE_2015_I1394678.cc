@@ -78,14 +78,8 @@ namespace Rivet {
       const ALICEToolsHI &ath = apply<ALICEToolsHI>(event,"ATH");
       //Find Event Plane 2 and 3
       const double EP2 = ath.EventPlaneN(2);
-      const double EP3 = ath.EventPlaneN(3);
 
-      //Find Particle V2 and V3
-      double v2 = ath.GetVn(2);
-      double v3 = ath.GetVn(3);
-
-
-    foreach (const Jet& j, jets){
+     foreach (const Jet& j, jets){
 
       const double area = clust_seq_area->area(j);
 
