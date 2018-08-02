@@ -1,24 +1,25 @@
 Name: ALICE_2015_I1343112
 Year: 2015
-Summary: <Insert short ALICE_2015_I1343112 description>
+Summary: Jet suprresion in Pb-Pb collsions at $\sqrt{s} = 2.76 \TeV$
 Experiment: ALICE
 Collider: LHC
 InspireID: 1343112
 Status: UNVALIDATED
 Authors:
- - Your Name <your@email.address>
+ - Ricardo Santos <redrivet3@gmail.com>
 #References:
-#- '<Example: Eur.Phys.J. C76 (2016) no.7, 392>'
-#- '<Example: DOI:10.1140/epjc/s10052-016-4184-8>'
-#- '<Example: arXiv:1605.03814>'
-RunInfo: <Describe event types, cuts, and other general generator config tips.>
+- arXiv:1502.01689
+- CERN-PH-EP-2015-023
+RunInfo: 'Run ALICE_2015_I1343112pp first to compare HI data against pp. 
+  Import with the -p [filename].yoda in the command line. If no
+  .yoda file is passed in, this analysis will run against the 
+  paper's reference data.''
 NeedCrossSection: no
-#Beams: <Insert beam pair(s), e.g. [p+, p+] or [[p-, e-], [p-, e+]]>
-#Energies: <Run energies or beam energy pairs in GeV, e.g. [13000] or [[8.0, 3.5]] or [630, 1800]. Order pairs to match "Beams">
+#Beams: [Pb208,Pb208]
+#Energies: [2760]
 Description:
-  '<A fairly long description, including what is measured
-  and if possible what it is useful for in terms of MC validation
-  and tuning. Use LaTeX for maths like $\pT > 50\;\GeV$.>'
+  'Transver momentum spectra and nuclear modification of jets at 0-10% 
+  and 10-30% centraltiy within a resolution parameter of R = 0.2.'
 BibKey: Adam:2015ewa
 BibTeX: '@article{Adam:2015ewa,
       author         = "Adam, Jaroslav and others",
@@ -37,5 +38,5 @@ BibTeX: '@article{Adam:2015ewa,
       SLACcitation   = "%%CITATION = ARXIV:1502.01689;%%"
 }'
 ToDo:
- - Implement the analysis, test it, remove this ToDo, and mark as VALIDATED :-)
+ - Test it, remove this ToDo, and mark as VALIDATED :-)
 

@@ -52,6 +52,8 @@ namespace Rivet {
     void finalize() {
 		scale(_histraapt5c1,  1/(counter2pt5*_ncollc1));
 		scale(_histraapt5c3,   1/(counter2pt5*_ncollc3));
+		_histraapt5c1->setPath("/ALICE_2015_I1343112/d06-x01-y01");
+		_histraapt5c3->setPath("/ALICE_2015_I1343112/d07-x01-y01");
     }
 	
 	double counter2pt5 = 0;

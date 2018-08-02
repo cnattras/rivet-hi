@@ -1,24 +1,23 @@
 Name: ALICE_2014_I1263194
 Year: 2014
-Summary: <Insert short ALICE_2014_I1263194 description>
+Summary: Chqarged jet suprresion in Pb-Pb collsions at $\sqrt{s} = 2.76 \TeV$
 Experiment: ALICE
 Collider: LHC
 InspireID: 1263194
 Status: UNVALIDATED
 Authors:
- - Your Name <your@email.address>
-#References:
-#- '<Example: Eur.Phys.J. C76 (2016) no.7, 392>'
-#- '<Example: DOI:10.1140/epjc/s10052-016-4184-8>'
-#- '<Example: arXiv:1605.03814>'
-RunInfo: <Describe event types, cuts, and other general generator config tips.>
+ - Ricardo Santos <redrivet3@gmail.com>
+References:
+- arXiv:1311.0633
+- CERN-PH-EP-2013-205
+RunInfo: ''
 NeedCrossSection: no
-#Beams: <Insert beam pair(s), e.g. [p+, p+] or [[p-, e-], [p-, e+]]>
-#Energies: <Run energies or beam energy pairs in GeV, e.g. [13000] or [[8.0, 3.5]] or [630, 1800]. Order pairs to match "Beams">
+#Beams: [Pb208,Pb208]
+#Energies: [2760]
 Description:
-  '<A fairly long description, including what is measured
-  and if possible what it is useful for in terms of MC validation
-  and tuning. Use LaTeX for maths like $\pT > 50\;\GeV$.>'
+  'PbPb collisions as a function of jet transverse momentum and charged jet spectra.
+  The jets are within resolution parameters of 0.2 and 0.3 in pseudo-rapidity $(\eta < 0.5)$.
+  Monetum of the charged patricles is measured down to 0.15GeV to grant acces to low pT jets.'
 BibKey: Abelev:2013kqa
 BibTeX: '@article{Abelev:2013kqa,
       author         = "Abelev, B. and others",
@@ -37,5 +36,5 @@ BibTeX: '@article{Abelev:2013kqa,
       SLACcitation   = "%%CITATION = ARXIV:1311.0633;%%"
 }'
 ToDo:
- - Implement the analysis, test it, remove this ToDo, and mark as VALIDATED :-)
+ - Test it, remove this ToDo, and mark as VALIDATED :-)
 

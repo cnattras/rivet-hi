@@ -2,8 +2,6 @@
 #include "Rivet/HeavyIonAnalysis.hh"
 #include "Rivet/Projections/FinalState.hh"
 #include "Rivet/Projections/FastJets.hh"
-#include "YODA/ReaderYODA.h"
-#include "Rivet/ReferenceDataLoader.hh"
 #include "fastjet/ClusterSequenceArea.hh"
 #include "Rivet/Projections/ALICEToolsHI.hh"
 #include "Rivet/Projections/EventPlane.hh"
@@ -27,9 +25,27 @@ namespace Rivet {
 		//takes 50 events and uses them for creating the centrality binning 
 		addCentralityMethod(HeavyIonAnalysis::ImpactParameter, 50, "ImpactParameterMethod");
 		//loads the pp refrence files for the RAA calculations
-		ReferenceDataLoader rdl("ALICE_2015_I1343112pp_tmp.yoda");
-		_hist_raa_pt5_c1_pp = rdl.getPPReferenceHisto1D("/ALICE_2015_I1343112pp/d06-x01-y01");
-		_hist_raa_pt5_c3_pp = rdl.getPPReferenceHisto1D("/ALICE_2015_I1343112pp/d07-x01-y01");
+		try
+		{
+			_hist_raa_pt5_c1_pp = getHisto1D("d06-x01-y01");
+			
+		}
+		catch(const exception &e)
+		{
+			_hist_raa_pt5_c1_pp = bookHisto1D(6, 1, 1);
+			_fillRef(_hist_raa_pt5_c1_pp, 6, 1, 1);
+		}
+		_hist_raa_pt5_c1_pp->setPath("/ALICE_2015_I1343112/TMP/d06-x01-y01");
+		try
+		{
+			_hist_raa_pt5_c3_pp = getHisto1D("d07-x01-y01");
+		}
+		catch(const exception &e)
+		{
+			_hist_raa_pt5_c3_pp = bookHisto1D(7, 1, 1);
+			_fillRef(_hist_raa_pt5_c3_pp, 7, 1, 1);
+		}
+		_hist_raa_pt5_c3_pp->setPath("/ALICE_2015_I1343112/TMP/d07-x01-y01");
 	    //cut of jets with pt 0.15 GeV and higher
 		const FinalState fs(Cuts::pT > 0.15*GeV);
 		declare (fs, "Fs");
@@ -205,6 +221,14 @@ namespace Rivet {
 		*out = *h1 / *h2;
 		out->setPath(path);
 	}
+	void _fillRef(Histo1DPtr & h, int d, int x, int y){
+				const Scatter2D scat = refData(d,x,y);
+				const std::vector<Point2D>&  ps = scat.points();
+				foreach (const Point2D& p, ps){
+					h->fill(p.x(), p.y());
+				}
+				
+			}
 
   };
 	

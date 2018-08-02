@@ -4,7 +4,6 @@
 #include "Rivet/Projections/FastJets.hh"
 #include "Rivet/Projections/ChargedFinalState.hh"
 #include "YODA/ReaderYODA.h"
-#include "Rivet/ReferenceDataLoader.hh"
 #include "fastjet/ClusterSequenceArea.hh"
 #include "Rivet/Projections/ALICEToolsHI.hh"
 #include "Rivet/Projections/EventPlane.hh"

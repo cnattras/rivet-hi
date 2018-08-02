@@ -275,37 +275,37 @@ YLabel=$\text{}R_{CP}$
 #################################################################
 
 # BEGIN PLOT /ALICE_2014_I1263194/d24-x01-y01
-Title=$\text{}NucModFactorP_{T}^{track}>(10GeV/c)R=0.2 Cen 0-10by 50-80\%$
+Title=$\text{}NucModFac\ p_{T}^{track}>(10GeV/c)R=0.2 Cen 0-10by 50-80\%$
 XLabel=$\text{}p_{T,ch\ jet}(GeV/c)$
 YLabel=$\text{}R_{CP}$
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d24-x01-y02
-Title=$\text{}NucModFactorP_{T}^{track}>(10GeV/c)R=0.3 Cen0-10by 50-80\%$
+Title=$\text{}NucModFac\ p_{T}^{track}>(10GeV/c)R=0.3 Cen0-10by 50-80\%$
 XLabel=$\text{}p_{T,ch\ jet}(GeV/c)$
 YLabel=$\text{}R_{CP}$
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d25-x01-y01
-Title=$\text{}NucModFactorP_{T}^{track}>(10GeV/c)R=0.2 Cen10-30by 50-80\%$
+Title=$\text{}NucModFac\ p_{T}^{track}>(10GeV/c)R=0.2 Cen10-30by 50-80\%$
 XLabel=$\text{}p_{T,ch\ jet}(GeV/c)$
 YLabel=$\text{}R_{CP}$
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d25-x01-y02
-Title=$\text{}NucModFactorP_{T}^{track}>(10GeV/c)R=0.3 Cen10-30by 50-80\%$
+Title=$\text{}NucModFac\ p_{T}^{track}>(10GeV/c)R=0.3 Cen10-30by 50-80\%$
 XLabel=$\text{}p_{T,ch\ jet}(GeV/c)$
 YLabel=$\text{}R_{CP}$
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d26-x01-y01
-Title=$\text{}NucModFactorP_{T}^{track}>(10GeV/c)R=0.2 Cen30-50by 50-80\%$
+Title=$\text{}NucModFac\ p_{T}^{track}>(10GeV/c)R=0.2 Cen30-50by 50-80\%$
 XLabel=$\text{}p_{T,ch\ jet}(GeV/c)$
 YLabel=$\text{}R_{CP}$
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d26-x01-y02
-Title=$\text{}NucModFactorP_{T}^{track}>(10GeV/c)R=0.3 Cen30-50by 50-80\%$
+Title=$\text{}NucModFac\ p_{T}^{track}>(10GeV/c)R=0.3 Cen30-50by 50-80\%$
 XLabel=$\text{}p_{T,ch\ jet}(GeV/c)$
 YLabel=$\text{}R_{CP}$
 # END PLOT
@@ -313,57 +313,62 @@ YLabel=$\text{}R_{CP}$
 #################################################################
 
 # BEGIN PLOT /ALICE_2014_I1263194/d27-x01-y01
-Title=$\text{}R_{CP} \ R=.2\ p_{T}^{track}>.15GeV$
+Title=$\text{}R_{CP} \ vs\ Nparticles\ R=.2\ p_{T}^{track}>.15GeV$
 XLabel=$\text{}N_{Part}$
 YLabel=$\text{}R_{CP}$
-XMax=500
+XMax=500.0
+XMin=50.0
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d28-x01-y01
-Title=$\text{}R_{CP} \ R=.2\ p_{T}^{track}>5GeV$
+Title=$\text{}R_{CP} \ vs\ Nparticles\ R=.2\ p_{T}^{track}>5GeV$
 XLabel=$\text{}N_{Part}$
 YLabel=$\text{}R_{CP}$
-Xmax=500
+XMax=500.0
+XMin=50.0
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d29-x01-y01
-Title=$\text{}R_{CP} \ R=.2\ p_{T}^{track}>10GeV$
+Title=$\text{}R_{CP} \ vs\ Nparticles\ R=.2\ p_{T}^{track}>10GeV$
 XLabel=$\text{}N_{Part}$
 YLabel=$\text{}R_{CP}$
-XMax=500
+XMax=500.0
+XMin=50.0
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d27-x01-y02
-Title=$\text{}R_{CP} \ R=.3\ p_{T}^{track}>.15GeV$
+Title=$\text{}R_{CP} \ vs\ Nparticles\ R=.3\ p_{T}^{track}>.15GeV$
 XLabel=$\text{}N_{Part}$
 YLabel=$\text{}R_{CP}$
-XMax=500
+XMax=500.0
+XMin=50.0
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d28-x01-y02
-Title=$\text{}R_{CP} \ R=.3\ p_{T}^{track}>5GeV$
+Title=$\text{}R_{CP} \ vs\ Nparticles\ R=.3\ p_{T}^{track}>5GeV$
 XLabel=$\text{}N_{Part}$
 YLabel=$\text{}R_{CP}$
-XMax=500
+XMax=500.0
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d29-x01-y02
-Title=$\text{}R_{CP} \ R=.3\ p_{T}^{track}>10GeV$
+Title=$\text{}R_{CP} \ vs\ Nparticles\ R=.3\ p_{T}^{track}>10GeV$
 XLabel=$\text{}N_{Part}$
 YLabel=$\text{}R_{CP}$
-XMax=500
+XMax=500.0
+XMin=50.0
 # END PLOT
 
 #################################################################
 
 # BEGIN PLOT /ALICE_2014_I1263194/d30-x01-y01
-Title=$\text{} Ratio\ of\ CJS p_{T}^{track}>5GeV Cen 0-10\%$
+Title=$\text{} Ratio\ of\ ChargeJetSpectra p_{T}^{track}>5GeV Cen 0-10\%$
 XLabel=$\text{}p_{T,ch jet}$
 YLabel=$\text{}\sigma(R=.2)/\sigma(R=.3)$
 # END PLOT
 
 # BEGIN PLOT /ALICE_2014_I1263194/d30-x01-y02
-Title=$\text{} Ratio\ of\ CJS p_{T}^{track}>5GeV Cen 50-80\%$
+Title=$\text{} Ratio\ of\ ChargeJetSpectra p_{T}^{track}>5GeV Cen 50-80\%$
 XLabel=$\text{}p_{T,ch jet}$
 YLabel=$\text{}\sigma(R=.2)/\sigma(R=.3)$
 # END PLOT
