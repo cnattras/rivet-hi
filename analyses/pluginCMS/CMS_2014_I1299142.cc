@@ -124,14 +124,14 @@ namespace Rivet
 					_h_pp_pt_150_300 = bookHisto1D(8,1,1);
 					_fillRef(_h_pp_pt_150_300, 8,1,1);
 				}
-				_h_pp_pt_150_300->setPath("/CMS_2014_I1299142/TMP/h_pp_xe_150_300");
+				_h_pp_pt_150_300->setPath("/CMS_2014_I1299142/TMP/h_pp_pt_150_300");
 
 				
 
 				addCentralityMethod(HeavyIonAnalysis::ImpactParameter, 50, "IPMethod");
 
 
-				ChargedFinalState cfs(Cuts::abseta < 2.1 && Cuts::pt > 1.0 * GeV);
+				ChargedFinalState cfs(Cuts::abseta < 2.5 && Cuts::pt > 1.0 * GeV);
 				declare(cfs, "CFS");
 
 				CMSToolsHI bgf(cfs,CMSToolsHI::CMS_Reflection);
@@ -230,7 +230,7 @@ namespace Rivet
 				if ((c < 0.) || (c > 100.)) vetoEvent; // ignore calibration events
 
 				
-				int bin = getBin(c);
+				
 				const double weight = event.weight();
 
 				const FinalState & cfs = apply<ChargedFinalState>(event,"CFS");
@@ -238,85 +238,85 @@ namespace Rivet
 				const FastJets & jets = apply<FastJets>(event,"jets");
 				Jets allJets = jets.jetsByPt(100.0*GeV); 
 				const CMSToolsHI &bgf = apply<CMSToolsHI>(event,"BGF");
-
+				
 
 				foreach (const Jet& jet, allJets)
 				{
+					int bin = getBin(c);
 					Particles pbg = bgf.CMSReflectionParticles(jet,0.3);
 					double jetPt = jet.pt() - bgf.CMSReflectionFourMomentum(jet,0.3).pt();
+					double jetP = jet.p3().mod() - bgf.CMSReflectionFourMomentum(jet,0.3).p3().mod();
 					
 					if (jetPt > 100 * GeV && abs(jet.eta())>0.3  && abs(jet.eta())<2.0 )
 					{
 						
-						if (jetPt < 300.*GeV)
+						if (jetPt <= 300.*GeV)
 						{
 							count[0][bin]+=weight;
 							
 							// Get ALL particles within R of 0.3 of jet centroid, fill histo
 							foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi()))
 							{
-								_h_f1_U[bin]->fill(xe(jet,p,jetPt),weight);
+								_h_f1_U[bin]->fill(xe(jet,p,jetP),weight);
 								_h_f5_U[bin]->fill(p.pt(),weight);
 							}
 							// Get BG Particles within R of 0.3 of eta reflected centroid
 							// CMSReflection(Jet& jetOfInterest, double R_Param)
 							foreach (const Particle& p, pbg)
 							{
-								_h_f1_U_BG[bin]->fill(xeBG(jet,p,jetPt),weight);
+								_h_f1_U_BG[bin]->fill(xeBG(jet,p,jetP),weight);
 								_h_f5_U_BG[bin]->fill(p.pt(),weight);
 							}
-						
-							if (jetPt < 120.*GeV)
+							if (bin > 0) bin--;
+							if (jetPt <= 120.*GeV)
 							{
 								
-								if (bin > 0) bin--;
 								count[1][bin]+=weight;
 								foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi()))
 								{
-									_h_f2_U[bin]->fill(xe(jet,p,jetPt),weight);
+									_h_f2_U[bin]->fill(xe(jet,p,jetP),weight);
 									_h_f6_U[bin]->fill(p.pt(),weight);
 								}
 
 								// Get BG Particles within R of 0.3 of eta reflected centroid
 								foreach (const Particle& p, pbg)
 								{
-									_h_f2_U_BG[bin]->fill(xeBG(jet,p,jetPt),weight);
+									_h_f2_U_BG[bin]->fill(xeBG(jet,p,jetP),weight);
 									_h_f6_U_BG[bin]->fill(p.pt(),weight);
 								}
 							}
-							else if (jetPt < 150.*GeV)
+							else if (jetPt <= 150.*GeV)
 							{   
 								
-								if (bin > 0) bin--;
 								count[2][bin]+=weight;
 								foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi()))
 								{
-									_h_f3_U[bin]->fill(xe(jet,p,jetPt),weight);
+									_h_f3_U[bin]->fill(xe(jet,p,jetP),weight);
 									_h_f7_U[bin]->fill(p.pt(),weight);
 								}
 
 								// Get BG Particles within R of 0.3 of eta reflected centroid
 								foreach (const Particle& p, pbg)
 								{
-									_h_f3_U_BG[bin]->fill(xeBG(jet,p,jetPt),weight);
+									_h_f3_U_BG[bin]->fill(xeBG(jet,p,jetP),weight);
 									_h_f7_U_BG[bin]->fill(p.pt(),weight);
 								}
 							}
 							else
 							{
 								
-								if (bin > 0) bin--;
+								
 								count[3][bin]+=weight;
 								foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi()))
 								{
-									_h_f4_U[bin]->fill(xe(jet,p,jetPt),weight);
+									_h_f4_U[bin]->fill(xe(jet,p,jetP),weight);
 									_h_f8_U[bin]->fill(p.pt(),weight);
 								}
 
 								// Get BG Particles within R of 0.3 of eta reflected centroid
 								foreach (const Particle& p, pbg)
 								{
-									_h_f4_U_BG[bin]->fill(xeBG(jet,p,jetPt),weight);
+									_h_f4_U_BG[bin]->fill(xeBG(jet,p,jetP),weight);
 									_h_f8_U_BG[bin]->fill(p.pt(),weight);
 								}
 							}
@@ -378,13 +378,13 @@ namespace Rivet
 
 
 		private:
-			double z (const Jet& jet, const Particle& part, double adjPt)
+			double z (const Jet& jet, const Particle& part, double adjP)
 			{
-				return dot(jet.p3(),part.p3()) / (jet.p() * adjPt );
+				return dot(jet.p3(),part.p3()) / (jet.p3().mod() * adjP );
 			}
-			double xe (const Jet& jet, const Particle& part, double adjPt)
+			double xe (const Jet& jet, const Particle& part, double adjP)
 			{
-				return log(1./z(jet,part, adjPt));
+				return log(1./z(jet,part, adjP));
 			}
 
 			double xeBG (const Jet& jet, const Particle& part, double adjPt)
@@ -412,12 +412,7 @@ namespace Rivet
 				else return 0;
 			}
 			
-//			void divide(Histo1DPtr h1, Scatter2DPtr h2, Scatter2DPtr out){
-//				const string path = out->path();
-//				*out = *h1 / *h2;
-//				out->setPath(path);
-//				cout << path << " scatter div\n";
-//			}
+
 			void divide(Histo1DPtr h1, Histo1DPtr h2, Scatter2DPtr out){
 				const string path = out->path();
 				*out = *h1 / *h2;
@@ -434,8 +429,7 @@ namespace Rivet
 				const std::vector<Point2D>&  ps = scat.points();
 				foreach (const Point2D& p, ps){
 					h->fill(p.x(), p.y());
-				}
-				
+				}	
 			}
 
 			// histograms;

@@ -22,7 +22,8 @@ namespace Rivet {
 
       // Initialise and register projections
       	
-		ChargedFinalState cfs(-2.,2.,1.0*GeV);	
+		ChargedFinalState cfs(Cuts::abseta < 2.5 && Cuts::pt > 1.0 * GeV);
+
 		declare(cfs, "CFS");
 
 		FastJets jets(cfs, FastJets::ANTIKT, 0.3, JetAlg::NO_MUONS, JetAlg::NO_INVISIBLES);
@@ -43,47 +44,53 @@ namespace Rivet {
     void analyze(const Event& event) {
 
 		const double weight = event.weight();
-		
+		const FinalState & cfs = apply<ChargedFinalState>(event,"CFS");
+		Particles particles = cfs.particles();
 		const FastJets & jets = apply<FastJets>(event,"jets");
-		Jets allJets = jets.jetsByPt(100.*GeV); ///// For testing 10 GeV Jets!!! For final 100+ GeV
+		Jets allJets = jets.jetsByPt(100.*GeV);
 		foreach (const Jet& jet, allJets){
-			if (jet.pT() <= 300.*GeV){
-				nJet_100_300 += weight;
-			
-				if (jet.pT() <= 120.*GeV){
-					foreach (const Particle& p, jet.particles()){
-					
-						_h_pp_xe_100_300->fill(xe(jet,p),weight);
-						_h_pp_xe_100_120->fill(xe(jet,p),weight);
-						_h_pp_pt_100_120->fill(p.pT(),weight);
-						_h_pp_pt_100_300->fill(p.pT(),weight);
+			if (jet.pT() > 100 * GeV && abs(jet.eta())>0.3  && abs(jet.eta())<2.0 )
+			{
+					if (jet.pT() <= 300.*GeV){
+					nJet_100_300 += weight;
+				
+					if (jet.pT() <= 120.*GeV){
+						foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi())){
+						
+							_h_pp_xe_100_300->fill(xe(jet,p),weight);
+							_h_pp_xe_100_120->fill(xe(jet,p),weight);
+							_h_pp_pt_100_120->fill(p.pT(),weight);
+							_h_pp_pt_100_300->fill(p.pT(),weight);
+							
+						}
 						nJet_100_120 += weight;
-					}
-				
-				}
-				else if (jet.pT() <= 150.*GeV){
-					foreach (const Particle& p, jet.particles()){
 					
-						_h_pp_xe_100_300->fill(xe(jet,p),weight);
-						_h_pp_xe_120_150->fill(xe(jet,p),weight);
-						_h_pp_pt_120_150->fill(p.pT(),weight);
-						_h_pp_pt_100_300->fill(p.pT(),weight);
+					}
+					else if (jet.pT() <= 150.*GeV){
+						foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi())){
+						
+							_h_pp_xe_100_300->fill(xe(jet,p),weight);
+							_h_pp_xe_120_150->fill(xe(jet,p),weight);
+							_h_pp_pt_120_150->fill(p.pT(),weight);
+							_h_pp_pt_100_300->fill(p.pT(),weight);
+							
+						}
 						nJet_120_150 += weight;
-					}
-				
-				}
-				else {
-					foreach (const Particle& p, jet.particles()){
 					
-						_h_pp_xe_100_300->fill(xe(jet,p),weight);
-						_h_pp_xe_150_300->fill(xe(jet,p),weight);
-						_h_pp_pt_150_300->fill(p.pT(),weight);
-						_h_pp_pt_100_300->fill(p.pT(),weight);
+					}
+					else {
+						foreach (const Particle& p, getConeParticles(particles,jet.eta(),jet.phi())){
+						
+							_h_pp_xe_100_300->fill(xe(jet,p),weight);
+							_h_pp_xe_150_300->fill(xe(jet,p),weight);
+							_h_pp_pt_150_300->fill(p.pT(),weight);
+							_h_pp_pt_100_300->fill(p.pT(),weight);
+							
+						}
 						nJet_150_300 += weight;
 					}
-				
+					
 				}
-				
 			}
 		}
 
@@ -119,6 +126,15 @@ private:
 	}
 	double xe (const Jet& jet, const Particle& part){
 		return log(1./z(jet,part));
+	}
+	Particles getConeParticles(const Particles& ps, double eta, double phi,double R = 0.3)
+	{
+		Particles conePart;
+		foreach (const Particle &p, ps)
+		{
+			if (deltaR(p,eta,phi) < R) conePart.push_back(p);
+		}
+		return conePart;
 	}
 
     /// @name Histograms
